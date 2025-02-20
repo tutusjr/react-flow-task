@@ -29,6 +29,12 @@ export const TeamProvider = ({ children }: TeamProviderProps) => {
 
   const addTeamNode = useCallback((teamName: string) => {
     const teamColor = getRandomColor();
+    const existingTeam = nodes.find((node) => node.data.label === teamName);
+    if (existingTeam) {
+      alert("Bu takım adı zaten mevcut!");
+      return;
+    }
+
     const newNode: CustomNode = {
       id: `team-${Date.now()}`,
       type: "teamNode",
@@ -36,7 +42,7 @@ export const TeamProvider = ({ children }: TeamProviderProps) => {
       data: { label: teamName, color: teamColor },
     };
     setNodes((nds) => [...nds, newNode]);
-  }, []);
+  }, [nodes]);
 
   const addMemberNode = useCallback((memberName: string) => {
     const newNode: CustomNode = {
@@ -112,7 +118,7 @@ export const TeamProvider = ({ children }: TeamProviderProps) => {
         addMemberNode,
         onConnect,
         onNodesChange,
-        deleteMember
+        deleteMember,
       }}
     >
       {children}
