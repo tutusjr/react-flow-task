@@ -5,6 +5,8 @@ import {
   Background,
   MarkerType,
   ConnectionMode,
+  Edge,
+  Node,
 } from "@xyflow/react";
 import TeamForm from "../Team/TeamForm";
 import MemberForm from "../Member/MemberForm";
@@ -23,8 +25,8 @@ const Flow = () => {
     useContext(TeamContext) || {
       addTeamNode: () => {},
       addMemberNode: () => {},
-      nodes: [],
-      edges: [],
+      nodes: [] as Node[],
+      edges: [] as Edge[],
       onConnect: () => {},
       onNodesChange: () => {},
     };
